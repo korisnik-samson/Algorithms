@@ -1,4 +1,4 @@
-import lib.RandomString;
+
 import lists.DequeList;
 import lists.DoubleLinkedList;
 import lists.Lists;
@@ -6,8 +6,6 @@ import sorting.BubbleSort;
 import sorting.InsertSort;
 import sorting.MergeSort;
 import sorting.QuickSort;
-
-import java.util.ArrayList;
 
 public class Main {
 
@@ -81,16 +79,11 @@ public class Main {
     public static void main(String[] args) {
 
         // testing the list
-        Lists<String> list = new DoubleLinkedList<>();
+        Lists<Integer> list = new DoubleLinkedList<>();
 
         for (int i = 0; i < 10; i++)
-            list.insert(RandomString.randomString(5));
+            list.insert(randomInt());
 
-        list.show();
-
-        DequeList<Integer> deque = new DequeList<>();
-        deque.addFirst(1);
-        deque.addFirst(2);
 
 
     }

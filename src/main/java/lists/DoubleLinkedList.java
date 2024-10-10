@@ -4,9 +4,9 @@ import lib.Node;
 
 public class DoubleLinkedList<E extends Comparable<E>> implements Lists<E> {
 
-    Node<E> head;
-    Node<E> tail;
-    int size;
+    private Node<E> head;
+    private Node<E> tail;
+    private int size;
 
     // logic will have to change to accommodate the size parameter
     /*public DoubleLinkedList() {}
@@ -115,7 +115,6 @@ public class DoubleLinkedList<E extends Comparable<E>> implements Lists<E> {
         System.out.println("null }");
     }
 
-    @Override
     public void showReverse() {
         Node<E> node = tail;
 

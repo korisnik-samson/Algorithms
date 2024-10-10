@@ -43,8 +43,6 @@ public interface Lists<E extends Comparable<E>> {
     // method to print the list
     public void show();
 
-    // method to print the list in reverse
-    public void showReverse();
 
     // append data to the end of the list
     public void insertEnd(E data);
