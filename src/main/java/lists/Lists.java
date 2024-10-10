@@ -17,7 +17,7 @@ public interface Lists<E extends Comparable<E>> {
     public E get(int index);
 
     // get method using the data itself
-    public E get(E data);
+    public E getItem(E data);
 
     // method to get the node at a specific index
     public Node<E> getNode(int index);

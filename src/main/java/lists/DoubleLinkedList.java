@@ -8,6 +8,13 @@ public class DoubleLinkedList<E extends Comparable<E>> implements Lists<E> {
     Node<E> tail;
     int size;
 
+    // logic will have to change to accommodate the size parameter
+    /*public DoubleLinkedList() {}
+
+    public DoubleLinkedList(int size) {
+        this.size = size;
+    }*/
+
     @Override
     public boolean isValidIndex(int index) {
         return index >= 0 && index < size;
@@ -48,7 +55,7 @@ public class DoubleLinkedList<E extends Comparable<E>> implements Lists<E> {
 
     @Override
     // get method using the data itself
-    public E get(E data) {
+    public E getItem(E data) {
         Node<E> current = head;
 
         // traverse the list until the data is found

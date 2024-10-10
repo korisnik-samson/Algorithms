@@ -1,10 +1,13 @@
-import com.sun.scenario.effect.Merge;
+import lib.RandomString;
+import lists.DequeList;
 import lists.DoubleLinkedList;
 import lists.Lists;
 import sorting.BubbleSort;
 import sorting.InsertSort;
 import sorting.MergeSort;
 import sorting.QuickSort;
+
+import java.util.ArrayList;
 
 public class Main {
 
@@ -64,8 +67,7 @@ public class Main {
     public static void implementQuickSort() {
         Lists<Integer> list = new DoubleLinkedList<>();
 
-        for (int i = 0; i < 10; i++)
-            list.insert(randomInt());
+        for (int i = 0; i < 10; i++) list.insert(randomInt());
 
         System.out.println("Before sorting:");
         list.show();
@@ -78,9 +80,18 @@ public class Main {
 
     public static void main(String[] args) {
 
-        // Implement the quick sort algorithm...
-        implementQuickSort();
-        breakLine();
+        // testing the list
+        Lists<String> list = new DoubleLinkedList<>();
+
+        for (int i = 0; i < 10; i++)
+            list.insert(RandomString.randomString(5));
+
+        list.show();
+
+        DequeList<Integer> deque = new DequeList<>();
+        deque.addFirst(1);
+        deque.addFirst(2);
+
 
     }
 
