@@ -39,4 +39,4 @@ This repository also includes implementations of various algorithms, including:
 To use these data structures and algorithms, simply clone the repository and include the relevant Java files in your project.
 
 ```bash
-git clone [repository_url](https://github.com/korisnik-samson/Algorithms.git)
+git clone https://github.com/korisnik-samson/Algorithms.git
