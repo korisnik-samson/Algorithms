@@ -1,11 +1,14 @@
 
+import lib.BinaryTreePrinter;
 import lists.DequeList;
 import lists.DoubleLinkedList;
 import lists.Lists;
+import lists.QueueList;
 import sorting.BubbleSort;
 import sorting.InsertSort;
 import sorting.MergeSort;
 import sorting.QuickSort;
+import trees.BinaryTree;
 
 public class Main {
 
@@ -78,14 +81,17 @@ public class Main {
 
     public static void main(String[] args) {
 
-        // testing the list
-        Lists<Integer> list = new DoubleLinkedList<>();
+        BinaryTree<Integer> tree = new BinaryTree<>(2);
+        BinaryTreePrinter printer = new BinaryTreePrinter();
+        
+        // Constructing a binary tree
+        for (int i = 0; i < 10; i++) tree.add(randomInt());
+        
+        printer.print(tree.getRoot());
 
-        for (int i = 0; i < 10; i++)
-            list.insert(randomInt());
-
-
-
+        Lists<Integer> largestValues = tree.getLargestValues();
+        System.out.println("\n\nLargest values at each level: ");
+        largestValues.show();
     }
 
 }

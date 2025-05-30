@@ -2,6 +2,8 @@ package lists;
 
 import lib.Node;
 
+import java.util.HashMap;
+
 public class DoubleLinkedList<E extends Comparable<E>> implements Lists<E> {
 
     private Node<E> head;
@@ -9,15 +11,15 @@ public class DoubleLinkedList<E extends Comparable<E>> implements Lists<E> {
     private int size;
 
     // logic will have to change to accommodate the size parameter
-    /*public DoubleLinkedList() {}
+    /* public DoubleLinkedList() {}
 
     public DoubleLinkedList(int size) {
         this.size = size;
-    }*/
+    } */
 
     @Override
     public boolean isValidIndex(int index) {
-        return index >= 0 && index < size;
+        return index < 0 || index >= size;
     }
 
     @Override
@@ -26,17 +28,17 @@ public class DoubleLinkedList<E extends Comparable<E>> implements Lists<E> {
     }
 
     @Override
-    public int getLength() {
+    public int getSize() {
         return size;
     }
 
     @Override
     // get method to retrieve the data at a specific index
     public E get(int index) {
-        if (!isValidIndex(index))
+        if (isValidIndex(index))
             throw new IndexOutOfBoundsException("Invalid index");
 
-        if (index >= getLength())
+        if (index >= getSize())
             throw new IndexOutOfBoundsException("Index out of bounds");
 
         if (index == 0) return head.data;
@@ -59,9 +61,8 @@ public class DoubleLinkedList<E extends Comparable<E>> implements Lists<E> {
         Node<E> current = head;
 
         // traverse the list until the data is found
-        for (int i = 0; i < getLength(); i++) {
-            if (current.data.equals(data))
-                return current.data;
+        for (int i = 0; i < getSize(); i++) {
+            if (current.data.equals(data)) return current.data;
 
             current = current.next;
         }
@@ -71,10 +72,10 @@ public class DoubleLinkedList<E extends Comparable<E>> implements Lists<E> {
 
     @Override
     public Node<E> getNode(int index) {
-        if (!isValidIndex(index))
+        if (isValidIndex(index))
             throw new IndexOutOfBoundsException("Invalid index");
 
-        if (index >= getLength())
+        if (index >= getSize())
             throw new IndexOutOfBoundsException("Index out of bounds");
 
         if (index == 0) return head;
@@ -186,12 +187,12 @@ public class DoubleLinkedList<E extends Comparable<E>> implements Lists<E> {
 
     @Override
     public void insertAt(int index, E data) {
-        if (!isValidIndex(index))
+        if (isValidIndex(index))
             throw new IndexOutOfBoundsException("Invalid index");
 
         if (index == 0) insertStart(data);
 
-        if (index == getLength()) insertEnd(data);
+        if (index == getSize()) insertEnd(data);
 
 
         Node<E> current = head;
@@ -214,7 +215,7 @@ public class DoubleLinkedList<E extends Comparable<E>> implements Lists<E> {
 
     @Override
     public void removeAt(int index) {
-        if (!isValidIndex(index))
+        if (isValidIndex(index))
             throw new IndexOutOfBoundsException("Invalid index");
 
         if (index == 0) {
@@ -222,7 +223,7 @@ public class DoubleLinkedList<E extends Comparable<E>> implements Lists<E> {
             deleteStart();
         }
 
-        if (index == getLength() - 1) {
+        if (index == getSize() - 1) {
             Node<E> node = tail;
             deleteEnd();
         }
@@ -247,44 +248,43 @@ public class DoubleLinkedList<E extends Comparable<E>> implements Lists<E> {
 
     @Override
     public void remove(E data) {
+        Node<E> current = head;
 
-    }
+        for (int i = 0; i < getSize(); i++) {
+            if (current.data.equals(data)) {
+                if (current == head) {
+                    deleteStart();
+                    return;
+                }
 
-    /*    public void swapNode(int index1, int index2) {
-            if (!isValidIndex(index1) || !isValidIndex(index2))
-                throw new IndexOutOfBoundsException("Invalid index");
+                if (current == tail) {
+                    deleteEnd();
+                    return;
+                }
 
-            if (index1 == index2) return;
+                current.previous.next = current.next;
+                current.next.previous = current.previous;
 
-            Node<E> node1 = getNode(index1);
-            Node<E> node2 = getNode(index2);
+                current.next = null;
+                current.previous = null;
 
-            E temp = node1.data;
-            node1.data = node2.data;
-            node2.data = temp;
+                size--;
+                return;
+            }
+
+            current = current.next;
         }
-
-        public void swapData(int index1, int index2) {
-            if (!isValidIndex(index1) || !isValidIndex(index2))
-                throw new IndexOutOfBoundsException("Invalid index");
-
-            if (index1 == index2) return;
-
-            Node<E> node1 = getNode(index1);
-            Node<E> node2 = getNode(index2);
-
-            swapOperation(node1, node2);
-        }*/
-
-    private void swapOperation(Node<E> nodeA, Node<E> nodeB) {
-        Node <E> tempNode;
-
-        tempNode = nodeA;
-        nodeA = nodeB;
-        nodeB = tempNode;
     }
+    
 
     public void clear() {
-
+        head = null;
+        tail = null;
+        
+        for (int i = 0; i < size; i++) {
+            deleteStart();
+        }
+        
+        size = 0;
     }
 }

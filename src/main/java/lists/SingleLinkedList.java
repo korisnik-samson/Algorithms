@@ -11,7 +11,7 @@ public class SingleLinkedList<E extends Comparable<E>> implements Lists<E> {
 
     @Override
     public boolean isValidIndex(int index) {
-        return index >= 0 && index < size;
+        return index < 0 || index >= size;
     }
 
     @Override
@@ -20,7 +20,7 @@ public class SingleLinkedList<E extends Comparable<E>> implements Lists<E> {
     }
 
     @Override
-    public int getLength() {
+    public int getSize() {
         return size();
     }
 
@@ -111,7 +111,7 @@ public class SingleLinkedList<E extends Comparable<E>> implements Lists<E> {
 
     @Override
     public void removeAt(int index) {
-        if (!isValidIndex(index)) throw new IndexOutOfBoundsException("Invalid cannot be negative or greater than size");
+        if (isValidIndex(index)) throw new IndexOutOfBoundsException("Invalid cannot be negative or greater than size");
 
         if (index == 0) removeFirst();
 

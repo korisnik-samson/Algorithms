@@ -10,6 +10,7 @@ public class MergeSort {
         // Split the list into two halves
         Node<E> middle = getMiddle(head);
         Node<E> nextOfMiddle = middle.next;
+        
         middle.next = null;
 
         // Recursively sort the two halves

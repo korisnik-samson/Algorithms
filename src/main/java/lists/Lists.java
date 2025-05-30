@@ -11,7 +11,7 @@ public interface Lists<E extends Comparable<E>> {
     public boolean isEmpty();
 
     // method to get the length of the list
-    public int getLength();
+    public int getSize();
 
     // get method to retrieve the data at a specific index
     public E get(int index);

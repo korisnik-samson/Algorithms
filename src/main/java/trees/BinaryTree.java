@@ -1,8 +1,13 @@
 package trees;
 
 import lib.Node;
+import lists.DoubleLinkedList;
+import lists.Lists;
+import lists.QueueList;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.Queue;
 
 public class BinaryTree<E extends Comparable<E>> {
 
@@ -30,6 +35,10 @@ public class BinaryTree<E extends Comparable<E>> {
         else return current;
 
         return current;
+    }
+    
+    public void add(E data) {
+        root = addRecursive(root, data);
     }
 
     public boolean containsNode(E data) {
@@ -113,5 +122,41 @@ public class BinaryTree<E extends Comparable<E>> {
 
             System.out.print(" " + node.data);
         }
+    }
+
+    // Implemeting level order traversal to find the largest values at each level
+    public Lists<E> getLargestValues() {
+        return largetValues(root);
+    }
+    
+    private Lists<E> largetValues(Node<E> root) {
+        if (root == null) return new DoubleLinkedList<>();
+        
+        Lists<E> list = new DoubleLinkedList<>();
+        QueueList<Node<E>> queueList = new QueueList<>();
+        
+        queueList.enqueue(root);
+        
+        while (!queueList.isEmpty()) {
+            int size = queueList.size();
+            E max = null;
+            
+            for (int i = 0; i < size; i++) {
+                Node<E> current = queueList.dequeue();
+                // Node<E> current = queueList.poll();
+                max = current.data;
+
+                // Update max if it's null or current.data is greater
+                if (max == null || current.data.compareTo(max) > 0) max = current.data;
+
+                // Add child nodes to the queue
+                if (current.previous != null) queueList.enqueue(current.previous);
+                if (current.next != null) queueList.enqueue(current.next);
+            }
+            
+            list.insert(max);
+        }
+        
+        return list;
     }
 }

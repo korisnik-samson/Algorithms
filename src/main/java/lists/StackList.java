@@ -34,5 +34,4 @@ public class StackList<E extends Comparable<E>> {
     public boolean isEmpty() {
         return top == null;
     }
-
 }
